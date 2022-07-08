@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="form-editor" ref="format" />
+    <div id="form-editor" />
     <div id="form-render" />
   </div>
 </template>

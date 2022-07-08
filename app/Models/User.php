@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
+    public function forms()
+    {
+        return $this->belongsTo(Form::class);
+    }
+
     // public function getPermissionAttribute()
     // {
     //     return $this->getAllPermissions();

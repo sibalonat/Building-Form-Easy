@@ -3657,7 +3657,7 @@
   "resolved" "https://registry.npmjs.org/jquery-ui-sortable/-/jquery-ui-sortable-1.0.0.tgz"
   "version" "1.0.0"
 
-"jquery@^3.6.0", "jquery@>=3.4.1":
+"jquery@^3.3.1", "jquery@^3.6.0", "jquery@>=3.4.1":
   "integrity" "sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw=="
   "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
   "version" "3.6.0"
@@ -5213,6 +5213,11 @@
   "resolved" "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz"
   "version" "2.0.0"
 
+"select2@^4.0.7-rc.0":
+  "integrity" "sha512-1JeB87s6oN/TDxQQYCvS5EFoQyvV6eYMZZ0AeA4tdFDYWN3BAGZ8npr17UBFddU0lgAt3H0yjX3X6/ekOj1yjw=="
+  "resolved" "https://registry.npmjs.org/select2/-/select2-4.0.13.tgz"
+  "version" "4.0.13"
+
 "selfsigned@^2.0.1":
   "integrity" "sha512-LmME957M1zOsUhG+67rAjKfiWFox3SBxE/yymatMZsAx+oMrJ0YQ8AToOnyCm7xbeg2ep37IHLxdu0o2MavQOQ=="
   "resolved" "https://registry.npmjs.org/selfsigned/-/selfsigned-2.0.1.tgz"
@@ -5864,6 +5869,14 @@
     "@vue/runtime-dom" "3.2.37"
     "@vue/server-renderer" "3.2.37"
     "@vue/shared" "3.2.37"
+
+"vue3-select2-component@^0.1.7":
+  "integrity" "sha512-8UPZmFl02I47XwW+j8ICmHyAND8wfbavlvMrqh10wwdSVER1aF2kI9XCmfIrNlVQvxSbvc0mJjWQAHHSCW9dkw=="
+  "resolved" "https://registry.npmjs.org/vue3-select2-component/-/vue3-select2-component-0.1.7.tgz"
+  "version" "0.1.7"
+  dependencies:
+    "jquery" "^3.3.1"
+    "select2" "^4.0.7-rc.0"
 
 "watchpack@^2.3.1":
   "integrity" "sha512-x0t0JuydIo8qCNctdDrn1OzH/qDzk2+rdCOC3YzumZ42fiMqmQ7T3xQurykYMhYfHaPHTp4ZxAx2NfUo1K6QaA=="

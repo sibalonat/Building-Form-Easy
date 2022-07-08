@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormeController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OrganizationsController;
-use App\Http\Controllers\ReportsController;
-use App\Http\Controllers\UsersController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +83,6 @@ Route::put('users/{user}/restore', [UsersController::class, 'restore'])
 
 
 
-
 // Organizations
 
 Route::get('organizations', [OrganizationsController::class, 'index'])
@@ -111,6 +111,19 @@ Route::delete('organizations/{organization}', [OrganizationsController::class, '
 
 Route::put('organizations/{organization}/restore', [OrganizationsController::class, 'restore'])
     ->name('organizations.restore')
+    ->middleware('auth');
+
+// Forms
+Route::get('forms', [FormeController::class, 'index'])
+    ->name('forms')
+    ->middleware('auth');
+
+Route::get('forms/create', [FormeController::class, 'create'])
+    ->name('forms')
+    ->middleware('auth');
+
+Route::post('forms', [FormeController::class, 'store'])
+    ->name('forms')
     ->middleware('auth');
 
 // Contacts
