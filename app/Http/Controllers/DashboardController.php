@@ -15,7 +15,6 @@ class DashboardController extends Controller
     {
         $retrieved = User::with('roles', 'permissions')->get();
 
-
         $user = (auth()->user() === 'Super-Admin') ? null : $retrieved;
 
         return Inertia::render('Dashboard/Index', [

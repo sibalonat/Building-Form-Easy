@@ -13,37 +13,30 @@
           <text-input v-model="form.theme" :error="form.errors.theme" class="w-full pb-8 pr-6 lg:w-1/2" label="Theme" />
 
           <Select2
-            v-model="form.theme" :options="myOptions" class="w-full pb-8 pr-6 lg:w-1/2"
+            v-model="form.theme" :options="myOptions" label="Theme" class="w-full pb-8 pr-6 lg:w-1/2"
             :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)"
             @select="mySelectEvent($event)"
           />
           <h4>Value: {{ myValue }}</h4>
 
-          <!-- <select-input v-model="form.role" class="w-full pb-8 pr-6 lg:w-3/4" label="Color">
-            <option v-for="color in permission" :key="single.id" :value="single.id" :selected="single.id">
-              {{ single.name }}
-            </option>
-            <option v-for="color in permission" :key="single.id" :value="single.id" :selected="single.id">
-              {{ single.name }}
-            </option>
-          </select-input> -->
           <text-input v-model="form.pages" :error="form.errors.pages" class="w-full pb-8 pr-6 lg:w-1/2" label="Pages" />
-          <text-input v-model="form.visibility" :error="form.errors.visibility" class="w-full pb-8 pr-6 lg:w-1/2"
-            label="Address" />
-          <text-input v-model="form.city" :error="form.errors.city" class="w-full pb-8 pr-6 lg:w-1/2" label="City" />
-          <text-input v-model="form.region" :error="form.errors.region" class="w-full pb-8 pr-6 lg:w-1/2"
-            label="Province/State" />
-          <select-input v-model="form.country" :error="form.errors.country" class="w-full pb-8 pr-6 lg:w-1/2"
-            label="Country">
-            <option :value="null" />
-            <option value="CA">Canada</option>
-            <option value="US">United States</option>
+
+          <select-input v-model="form.visibility" class="w-full pb-8 pr-6 lg:w-3/4" label="Role">
+            <option v-for="hidshow in visibility_options" :key="hidshow.id" :value="hidshow.id" :selected="hidshow.id">
+              {{ hidshow.name }}
+            </option>
           </select-input>
-          <text-input v-model="form.postal_code" :error="form.errors.postal_code" class="w-full pb-8 pr-6 lg:w-1/2"
-            label="Postal code" />
+
+          <text-input v-model="form.identifier" :error="form.errors.identifier" class="w-full pb-8 pr-6 lg:w-1/2" label="Identifier" />
+          <input
+            v-model="form.multi_tab" type="checkbox" :error="form.errors.multi_tab" class="w-full pb-8 pr-6 lg:w-1/2"
+            label="Multi-tab"
+          />
+
+          <VFormBuilder @on-save="onSave" />
         </div>
         <div class="flex items-center justify-end px-8 py-4 border-t border-gray-100 bg-gray-50">
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Organization
+          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Form
           </loading-button>
         </div>
       </form>
@@ -58,6 +51,8 @@ import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Select2 from 'vue3-select2-component'
+import VFormBuilder from '@/Shared/formBuild'
+
 
 export default {
   components: {
@@ -67,8 +62,14 @@ export default {
     SelectInput,
     TextInput,
     Select2,
+    // eslint-disable-next-line vue/no-unused-components
+    VFormBuilder,
   },
   layout: Layout,
+  props: {
+    // eslint-disable-next-line vue/prop-name-casing
+    visibility_options: Object,
+  },
   remember: 'form',
   data() {
     return {
@@ -84,16 +85,7 @@ export default {
           'text': 'Blue',
         },
       ],
-      myOptVisibility: [
-        {
-          'id': '#ae0c21',
-          'text': 'Red',
-        },
-        {
-          'id': '#2683cc',
-          'text': 'Blue',
-        },
-      ],
+
       form: this.$inertia.form({
         name: null,
         theme: null,
@@ -114,6 +106,9 @@ export default {
     },
     store() {
       this.form.post('/organizations')
+    },
+    onSave: function(formData) {
+      alert(formData)
     },
   },
 }
