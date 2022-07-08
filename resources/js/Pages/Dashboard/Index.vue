@@ -33,10 +33,10 @@
         </tbody>
       </table>
     </div>
-    <!-- <br />
     <br />
     <br />
-    <VFormBuilder /> -->
+    <br />
+    <VFormBuilder />
   </div>
 </template>
 
@@ -44,7 +44,7 @@
 import { Head, Link } from '@inertiajs/inertia-vue3'
 import Layout from '@/Shared/Layout'
 import Icon from '@/Shared/Icon'
-// import VFormBuilder from '@/Shared/formBuild'
+import VFormBuilder from '@/Shared/formBuild'
 
 
 export default {
@@ -52,7 +52,7 @@ export default {
     Head,
     Link,
     Icon,
-    // VFormBuilder,
+    VFormBuilder,
   },
   layout: Layout,
   props: {

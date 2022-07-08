@@ -3803,6 +3803,11 @@
     "webpackbar" "^5.0.0-3"
     "yargs" "^17.2.1"
 
+"laravel-permission-to-vuejs@^3.0.0":
+  "integrity" "sha512-fxmgczkE9B1MU/pr92lgtJYXqt1631neVUF6plLc11R5hS/8v2BYlGPLW8nkEXpXqus293I6GtUDZ9/x7SqvZQ=="
+  "resolved" "https://registry.npmjs.org/laravel-permission-to-vuejs/-/laravel-permission-to-vuejs-3.0.0.tgz"
+  "version" "3.0.0"
+
 "levn@^0.4.1":
   "integrity" "sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ=="
   "resolved" "https://registry.npmjs.org/levn/-/levn-0.4.1.tgz"

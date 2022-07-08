@@ -1,9 +1,20 @@
+<template>
+  <div>
+    <div id="form-editor" ref="format" />
+    <div id="form-render" />
+  </div>
+</template>
+
 <script>
 require('jquery-ui-sortable')
+// import { ref, onMounted } from 'vue'
+// setup() {
+//   const format = ref()
+// },
 export default {
   name: 'VFormBuilder',
   props: {},
-  mounted: function () {
+  async mounted() {
     var self = this,
       fbOptions = {
         onSave: function () {
@@ -12,10 +23,11 @@ export default {
           self.$emit('on-save', fBuilder.formData)
         },
         disabledActionButtons: ['data'],
+        disabledAttrs: ['access', 'style', 'className'],
+        disableFields: ['autocomplete'],
       },
       // eslint-disable-next-line no-undef
-      fBuilder = $('#form-editor').formBuilder(fbOptions)
+      fBuilder = await $('#form-editor').formBuilder(fbOptions)
   },
-  template: '<div><div id="form-editor"></div><div id="form-render"></div></div>',
 }
 </script>
