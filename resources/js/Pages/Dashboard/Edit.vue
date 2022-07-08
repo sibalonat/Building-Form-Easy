@@ -12,7 +12,8 @@
         <div class="px-6 pt-6 pb-4">
           <div class="grid grid-cols-2 gap-4">
             <div class="col-auto">
-              <select-input v-model="form.role" class="w-full pb-8 pr-6 lg:w-3/4" label="Role" @change="onChange($event)">
+              <!-- @change="onChange($event)" -->
+              <select-input v-model="form.role" class="w-full pb-8 pr-6 lg:w-3/4" label="Role">
                 <option v-for="single in permission" :key="single.id" :value="single.id" :selected="single.id">
                   {{ single.name }}
                 </option>
@@ -45,6 +46,7 @@ export default {
   layout: Layout,
   props: {
     role: Object,
+    user: Object,
     permission: Object,
   },
   remember: 'form',
@@ -57,12 +59,13 @@ export default {
     }
   },
   created() {
+    // console.log(this.user.id)
     this.form.role = Object.keys(this.role)[0]
   },
   methods: {
     update() {
       // console.log()
-      this.form.put(`/organizations/${this.organization.id}`)
+      this.form.put(`/permission/${this.user.id}/role`)
     },
     // onChange(event) {
     //   console.log(event.target.value)

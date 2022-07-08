@@ -45,7 +45,7 @@ Route::get('permission/{user}/edit', [DashboardController::class, 'edit'])
     ->name('permission.edit')
     ->middleware('auth');
 
-Route::put('permission/{user}', [DashboardController::class, 'update'])
+Route::put('permission/{user}/role', [DashboardController::class, 'update'])
     ->name('permission.update')
     ->middleware('auth');
 
