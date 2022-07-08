@@ -12,16 +12,21 @@ class FormeController extends Controller
 
     public function index()
     {
-        $form = Form::with('user')->get();
+        $form = Form::with('user')
+        ->get('id', 'identifier', 'name', 'theme');
+        // ->select('id', 'identifier', 'name', 'theme')
+        $data = ($form->count()) ? null : $form;
+        // dd($form);
 
         return Inertia::render('Forms/Index', [
-            'forms' => [
-                'id' => $form->id,
-                'identifier' => $form->identifier,
-                'name' => $form->name,
-                'theme' => $form->theme,
-                'username' => $form->user?->name,
-            ],
+            'forms' => $data,
+            // 'forms' => [
+            //     'id' => $form?->id,
+            //     'identifier' => $form?->identifier,
+            //     'name' => $form?->name,
+            //     'theme' => $form?->theme,
+            //     'username' => $form?->user?->name,
+            // ],
         ]);
         // 'pages' => $form->pages,
         // 'multi' => $form->multi_tab,

@@ -2,12 +2,12 @@
   <div>
     <Head title="Forms" />
     <h1 class="mb-8 text-3xl font-bold">Forms</h1>
-    <!-- <div class="flex items-center justify-between mb-6">
-      <Link class="btn-indigo" href="/organizations/create">
+    <div class="flex items-center justify-between mb-6">
+      <Link class="btn-indigo" href="/forms/create">
         <span>Create</span>
-        <span class="hidden md:inline">&nbsp;Organization</span>
+        <span class="hidden md:inline">&nbsp;Forms</span>
       </Link>
-    </div> -->
+    </div>
     <div class="overflow-x-auto bg-white rounded-md shadow">
       <table class="w-full whitespace-nowrap">
         <thead>
@@ -47,31 +47,30 @@
         </tbody> -->
       </table>
     </div>
-    <pagination class="mt-6" :links="organizations.links" />
+    <!-- <pagination class="mt-6" :links="organizations.links" /> -->
   </div>
 </template>
 
 <script>
-// import { Head, Link } from '@inertiajs/inertia-vue3'
-import { Head } from '@inertiajs/inertia-vue3'
+import { Head, Link } from '@inertiajs/inertia-vue3'
 // import Icon from '@/Shared/Icon'
 // import pickBy from 'lodash/pickBy'
 import Layout from '@/Shared/Layout'
 // import throttle from 'lodash/throttle'
 // import mapValues from 'lodash/mapValues'
-import Pagination from '@/Shared/Pagination'
+// import Pagination from '@/Shared/Pagination'
 
 
 export default {
   components: {
     Head,
     // Icon,
-    // Link,
-    Pagination,
+    Link,
+    // Pagination,
   },
   layout: Layout,
   props: {
-    filters: Object,
+    // filters: Object,
     form: Object,
   },
   data() {
@@ -81,6 +80,9 @@ export default {
       //   trashed: this.filters.trashed,
       // },
     }
+  },
+  created() {
+    console.log(this.form)
   },
   // watch: {
   //   form: {

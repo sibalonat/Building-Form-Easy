@@ -1,11 +1,18 @@
 <template>
   <div>
-    <div class="mb-4">
-      <div v-if="is('Super-Admin')">
+    <div v-if="is('Super-Admin')">
+      <div class="mb-4">
         <!-- Show admin tools -->
         <Link class="flex items-center py-3 group" href="/">
           <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
           <div :class="isUrl('') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Dashboard</div>
+        </Link>
+      </div>
+      <div class="mb-4">
+        <!-- Show admin tools -->
+        <Link class="flex items-center py-3 group" href="/forms">
+          <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('forms') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+          <div :class="isUrl('forms') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Forms</div>
         </Link>
       </div>
     </div>
