@@ -49,10 +49,6 @@ export default {
       // eslint-disable-next-line no-undef
       fBuilder = $('#form-editor').formBuilder(fbOptions)
     this.fBuilder = fBuilder
-
-    // console.log(this.fBuilder)
-    // console.log(fBuilder)
-
   },
 }
 </script>
