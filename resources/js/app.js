@@ -4,12 +4,12 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 // eslint-disable-next-line no-unused-vars
 import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
 
-import Select2 from 'vue3-select2-component';
 // eslint-disable-next-line no-undef
 window.$ = window.jQuery = require('jquery')
 
 // require("jquery-ui-sortable")
 require('formBuilder')
+require('formBuilder/dist/form-render.min.js')
 
 InertiaProgress.init()
 
