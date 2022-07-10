@@ -37,7 +37,7 @@
             <label for="multi" class="w-10/12 pl-3"> Multi-tab </label>
           </div>
 
-          <VFormBuilder class="w-full" @on-save="onSave" />
+          <VFormBuilder ref="gott" class="w-full" @on-save="store" />
         </div>
         <div class="flex items-center justify-end px-8 py-4 border-t border-gray-100 bg-gray-50">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">
@@ -103,15 +103,6 @@ export default {
       }),
     }
   },
-  // watch: {
-  //   form: {
-  //     handler(value) {
-  //       this.setPlace(value)
-  //     },
-  //     deep: true,
-  //     immediate: true,
-  //   },
-  // },
   methods: {
     myChangeEvent(val) {
       console.log(val)
@@ -119,10 +110,14 @@ export default {
     mySelectEvent({ id, text }) {
       console.log({ id, text })
     },
-    store() {
+    store(formData) {
       // eslint-disable-next-line no-undef
       // this.onSave(formData)
-      
+      // eslint-disable-next-line no-undef
+      console.log(this.$refs.gott.$data.fBuilder.formData)
+      // console.log(this.$refs.gott.model)
+      console.log(formData)
+
       // this.form.post('/organizations')
     },
     onSave: function (formData) {

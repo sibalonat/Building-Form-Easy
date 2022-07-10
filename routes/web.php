@@ -123,7 +123,7 @@ Route::get('forms/create', [FormeController::class, 'create'])
     ->middleware('auth');
 
 Route::post('forms', [FormeController::class, 'store'])
-    ->name('forms')
+    ->name('forms.store')
     ->middleware('auth');
 
 // Contacts
