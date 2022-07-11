@@ -17,18 +17,14 @@
 
           <text-input v-model="form.pages" :error="form.errors.pages" class="w-full pb-8 pr-6 lg:w-1/12" label="Pages" />
 
-          <select-input v-model="form.visibility" class="w-full pb-8 pr-6 lg:w-1/3" label="Visibility">
+          <select-input v-model="form.visibility" class="w-full pb-8 pr-6 lg:w-1/4" label="Visibility">
             <option v-for="hidshow in visibility_options" :key="hidshow.id" class="w-full text-xs" :value="hidshow.id" :selected="hidshow.id">
               {{ hidshow.name }}
             </option>
           </select-input>
 
-          <text-input
-            v-model="form.identifier" :error="form.errors.identifier" class="w-full pb-8 pr-6 lg:w-1/5"
-            label="Identifier"
-          />
 
-          <div class="inline-flex items-center w-1/5 my-auto">
+          <div class="inline-flex items-center w-1/6 my-auto">
             <input
               id="multi" v-model="form.multi_tab" type="checkbox"
               :error="form.errors.multi_tab"
@@ -37,7 +33,7 @@
             <label for="multi" class="w-10/12 pl-3"> Multi-tab </label>
           </div>
 
-          <VFormBuilder ref="gott" class="w-full" @on-save="store" />
+          <VFormBuilder ref="gott" class="w-full" />
         </div>
         <div class="flex items-center justify-end px-8 py-4 border-t border-gray-100 bg-gray-50">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">
@@ -67,7 +63,6 @@ export default {
     SelectInput,
     TextInput,
     Select2,
-    // eslint-disable-next-line vue/no-unused-components
     VFormBuilder,
   },
   layout: Layout,
@@ -79,8 +74,7 @@ export default {
   data() {
     return {
       formData: null,
-      // myValue: '',
-      // or [{id: key, text: value}, {id: key, text: value}]
+
       myOptions: [
         {
           'id': '#ae0c21',
@@ -97,7 +91,6 @@ export default {
         theme: null,
         pages: null,
         visibility: null,
-        identifier: null,
         multi_tab: null,
         form_builder_json: null,
       }),
@@ -110,35 +103,13 @@ export default {
     mySelectEvent({ id, text }) {
       console.log({ id, text })
     },
-    store(formData) {
-      // eslint-disable-next-line no-undef
-      // this.onSave(formData)
-      // eslint-disable-next-line no-undef
-      console.log(this.$refs.gott.$data.fBuilder.formData)
-      // console.log(this.$refs.gott.model)
-      console.log(formData)
+    store() {
 
-      // this.form.post('/organizations')
-    },
-    onSave: function (formData) {
-      // alert(formData)
-      console.log(formData)
+      this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
+
+      this.form.post('/questions')
     },
   },
 }
 </script>
 
-
-
-  <!-- <text-input v-model="form.theme" :error="form.errors.theme" class="w-full pb-8 pr-6 lg:w-1/4" label="Theme" /> -->
-
-  <!-- <Select2
-    v-model="form.theme" :options="myOptions" label="Theme" class="w-full pb-8 pr-6 lg:w-1/2"
-    :settings="{ width: '80%', settingOption: value }" @change="myChangeEvent($event)"
-    @select="mySelectEvent($event)"
-  /> -->
-
-            <!-- <input
-            v-model="form.multi_tab" type="checkbox" :error="form.errors.multi_tab"
-            class="w-full pb-8 pr-6 lg:w-1/12" label="Multi-tab"
-          /> -->

@@ -3,7 +3,7 @@
     <Head title="Forms" />
     <h1 class="mb-8 text-3xl font-bold">Forms</h1>
     <div class="flex items-center justify-between mb-6">
-      <Link class="btn-indigo" href="/forms/create">
+      <Link class="btn-indigo" href="/questions/create">
         <span>Create</span>
         <span class="hidden md:inline">&nbsp;Forms</span>
       </Link>

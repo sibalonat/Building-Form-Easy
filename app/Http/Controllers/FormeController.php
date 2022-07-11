@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Form;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FormeController extends Controller
 {
@@ -14,22 +15,12 @@ class FormeController extends Controller
     {
         $form = Form::with('user')
         ->get('id', 'identifier', 'name', 'theme');
-        // ->select('id', 'identifier', 'name', 'theme')
+
         $data = ($form->count()) ? null : $form;
-        // dd($form);
 
         return Inertia::render('Forms/Index', [
             'forms' => $data,
-            // 'forms' => [
-            //     'id' => $form?->id,
-            //     'identifier' => $form?->identifier,
-            //     'name' => $form?->name,
-            //     'theme' => $form?->theme,
-            //     'username' => $form?->user?->name,
-            // ],
         ]);
-        // 'pages' => $form->pages,
-        // 'multi' => $form->multi_tab,
     }
 
     public function create()
@@ -41,26 +32,16 @@ class FormeController extends Controller
 
     public function store()
     {
-        Auth::user()->account->organizations()->create(
+        Form::create(
             Request::validate([
                 'name' => ['required', 'max:100'],
-                'theme' => ['nullable', 'max:50', 'email'],
+                'theme' => ['nullable'],
                 'pages' => ['nullable', 'max:50'],
                 'visibility' => ['nullable', 'max:150'],
                 'multi_tab' => ['nullable', 'max:50'],
-                'identifier' => ['nullable', 'max:50'],
                 'form_builder_json' => ['required'],
             ])
         );
+        return Redirect::route('forms')->with('success', 'Form created.');
     }
-
-
-    // 'address' => $organization->address,
-                // // 'form_builder_json' => $form->form_builder_json,
-                // 'region' => $organization->region,
-                // 'country' => $organization->country,
-                // 'postal_code' => $organization->postal_code,
-                // 'deleted_at' => $organization->deleted_at,
-                // 'contacts' => $organization->contacts()->orderByName()->get()->map->only('id', 'name', 'city', 'phone'),
-
 }

@@ -74,6 +74,7 @@ class User extends Authenticatable
 
     // public function getPermissionAttribute()
     // {
+    // return $this->belongsTo(Form::class);
     //     return $this->getAllPermissions();
     // }
 

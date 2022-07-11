@@ -6,12 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <script type="text/javascript">
-        window.Laravel = {
-            csrfToken: "{{ csrf_token() }}",
-            jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
-        }
-    </script>
+
 
     {{-- Inertia --}}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=smoothscroll,NodeList.prototype.forEach,Promise,Object.values,Object.assign" defer></script>
@@ -21,6 +16,13 @@
 
     <script src="{{ mix('/js/app.js') }}" defer></script>
     @inertiaHead
+
+    <script type="text/javascript">
+        window.Laravel = {
+            csrfToken: "{{ csrf_token() }}",
+            jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
+        }
+    </script>
 </head>
 <body class="font-sans antialiased leading-none text-gray-700">
     @inertia

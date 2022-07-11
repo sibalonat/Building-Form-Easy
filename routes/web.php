@@ -114,15 +114,15 @@ Route::put('organizations/{organization}/restore', [OrganizationsController::cla
     ->middleware('auth');
 
 // Forms
-Route::get('forms', [FormeController::class, 'index'])
+Route::get('questions', [FormeController::class, 'index'])
     ->name('forms')
     ->middleware('auth');
 
-Route::get('forms/create', [FormeController::class, 'create'])
-    ->name('forms')
+Route::get('questions/create', [FormeController::class, 'create'])
+    ->name('forms.create')
     ->middleware('auth');
 
-Route::post('forms', [FormeController::class, 'store'])
+Route::post('questions', [FormeController::class, 'store'])
     ->name('forms.store')
     ->middleware('auth');
 

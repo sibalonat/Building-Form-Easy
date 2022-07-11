@@ -18,7 +18,7 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line no-undef, no-unused-vars
-    fbOptions = {
+    var fbOptions = {
       disabledActionButtons: ['data', 'save', 'clear'],
       disabledAttrs: ['access', 'style', 'className'],
       disableFields: ['autocomplete', 'hidden', 'paragraph', 'button'],

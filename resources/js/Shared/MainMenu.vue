@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="is('Super-Admin')">
+      {{ is('Super-Admin') }}
       <div class="mb-4">
         <!-- Show admin tools -->
         <Link class="flex items-center py-3 group" href="/">
@@ -10,9 +11,16 @@
       </div>
       <div class="mb-4">
         <!-- Show admin tools -->
-        <Link class="flex items-center py-3 group" href="/forms">
-          <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('forms') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-          <div :class="isUrl('forms') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Forms</div>
+        <Link class="flex items-center py-3 group" href="/questions">
+          <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('questions') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+          <div :class="isUrl('questions') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Forms</div>
+        </Link>
+      </div>
+      <div class="mb-4">
+        <!-- Show admin tools -->
+        <Link class="flex items-center py-3 group" href="/questions/create">
+          <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('questions/create') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+          <div :class="isUrl('questions/create') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Forms create</div>
         </Link>
       </div>
     </div>

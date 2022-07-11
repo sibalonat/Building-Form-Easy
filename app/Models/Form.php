@@ -2,13 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Form extends Model
 {
     use HasFactory;
+
+
+    public static function booted()
+    {
+        static::creating(function(Form $form) {
+            $form->identifier = (string) Str::uuid();
+            $form->user_id = auth()->user()->id;
+        });
+    }
 
     const FORM_PUBLIC = 'PUBLIC';
     const FORM_PRIVATE = 'PRIVATE';
