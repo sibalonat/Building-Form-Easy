@@ -5,6 +5,7 @@
       <Link class="text-indigo-400 hover:text-indigo-600" href="/forms">Forms</Link>
       <span class="font-medium text-indigo-400">/</span> Edit {{ questions.name }}
     </h1>
+
     <div class="max-w-full overflow-hidden bg-white rounded-md shadow">
       <form @submit.prevent="update">
         <div class="flex flex-wrap p-8 -mb-8 -mr-6">
@@ -32,12 +33,12 @@
             <label for="multi" class="w-10/12 pl-3"> Multi-tab </label>
           </div>
 
-          <VFormBuilder ref="gott" :form-build="form.form_builder_json" class="w-full" />
+          <VFormBuilder ref="gott" class="w-full" />
         </div>
-        <div class="flex items-center justify-end px-8 py-4 border-t border-gray-100 bg-gray-50">
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">
-            Create Form
-          </loading-button>
+
+        <div class="flex items-center px-8 py-4 border-t border-gray-100 bg-gray-50">
+          <button v-if="!questions.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete Form</button>
+          <loading-button :loading="form.processing" class="ml-auto btn-indigo" type="submit">Update Form</loading-button>
         </div>
       </form>
     </div>
@@ -53,7 +54,7 @@ import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Select2 from 'vue3-select2-component'
 import VFormBuilder from '@/Shared/formBuildEdit'
-
+import TrashedMessage from '@/Shared/TrashedMessage'
 
 export default {
   components: {
@@ -64,6 +65,7 @@ export default {
     TextInput,
     Select2,
     VFormBuilder,
+    TrashedMessage,
   },
   provide() {
     return {
@@ -103,18 +105,6 @@ export default {
       }),
     }
   },
-  created() {
-    console.log(this.form)
-    console.log(this.questions)
-    // eslint-disable-next-line no-undef
-    // console.log(formBuild)
-  },
-  mounted() {
-    console.log(this.visibility_options)
-    console.log(this.form.visibility)
-    console.log(this.questions)
-    console.log(this.formajson)
-  },
   methods: {
     myChangeEvent(val) {
       console.log(val)
@@ -124,12 +114,13 @@ export default {
     },
     update() {
       this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
-      // console.log(this.form.multi_tab)
-
       this.form.multi_tab ? false : this.form.multi_tab
-
-      // this.form.post('/questions')
       this.form.put(`/questions/${this.questions.id}`)
+    },
+    destroy() {
+      if (confirm('Are you sure you want to delete this form?')) {
+        this.$inertia.delete(`/questions/${this.questions.id}`)
+      }
     },
   },
 }

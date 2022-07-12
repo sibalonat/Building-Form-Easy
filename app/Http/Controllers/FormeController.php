@@ -75,4 +75,12 @@ class FormeController extends Controller
 
         return Redirect::route('forms')->with('success', 'Form updated.');
     }
+
+    public function destroy(Form $form)
+    {
+        $form->delete();
+
+        return Redirect::route('forms')->with('success', 'Form deleted.');
+    }
+
 }

@@ -134,6 +134,14 @@ Route::put('questions/{form}', [FormeController::class, 'update'])
     ->name('forms.update')
     ->middleware('auth');
 
+Route::delete('questions/{form}', [FormeController::class, 'destroy'])
+    ->name('forms.destroy')
+    ->middleware('auth');
+
+Route::put('questions/{form}/restore', [FormeController::class, 'restore'])
+    ->name('questions.restore')
+    ->middleware('auth');
+
 // Contacts
 
 Route::get('contacts', [ContactsController::class, 'index'])
