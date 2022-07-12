@@ -1,4 +1,4 @@
-import { createApp, h } from 'vue'
+import { createApp, h, provide, inject } from 'vue'
 import { InertiaProgress } from '@inertiajs/progress'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 // eslint-disable-next-line no-unused-vars
@@ -19,6 +19,7 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .use(provide, inject)
       .use(LaravelPermissionToVueJS)
       .mount(el)
   },

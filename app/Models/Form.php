@@ -29,8 +29,9 @@ class Form extends Model
     ];
 
     protected $guarded = [
-        'id', 'created_at', 'updated_at',
+        'id', 'created_at', 'updated_at', 'user_id',
     ];
+
 
     /**
      * The attributes that should be casted to another data type.
@@ -92,6 +93,7 @@ class Form extends Model
     {
         return json_decode($this->attributes['form_builder_json'], true);
     }
+
 
     /**
      * Get the forms that belong to the provided user.

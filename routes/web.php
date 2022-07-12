@@ -126,6 +126,14 @@ Route::post('questions', [FormeController::class, 'store'])
     ->name('forms.store')
     ->middleware('auth');
 
+Route::get('questions/{form}/edit', [FormeController::class, 'edit'])
+    ->name('forms.edit')
+    ->middleware('auth');
+
+Route::put('questions/{form}', [FormeController::class, 'update'])
+    ->name('forms.update')
+    ->middleware('auth');
+
 // Contacts
 
 Route::get('contacts', [ContactsController::class, 'index'])

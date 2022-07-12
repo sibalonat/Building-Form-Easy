@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Form;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class FormeController extends Controller
 {
-
     public function index()
     {
         $form = Form::with('user')
-        ->get('id', 'identifier', 'name', 'theme');
+        ->select('id', 'identifier', 'name', 'theme', 'user_id')
+        ->get();
 
-        $data = ($form->count()) ? null : $form;
+        $data = ($form->count()) ? $form : null;
 
         return Inertia::render('Forms/Index', [
             'forms' => $data,
@@ -38,10 +37,42 @@ class FormeController extends Controller
                 'theme' => ['nullable'],
                 'pages' => ['nullable', 'max:50'],
                 'visibility' => ['nullable', 'max:150'],
-                'multi_tab' => ['nullable', 'max:50'],
+                'multi_tab' => ['boolean'],
                 'form_builder_json' => ['required'],
             ])
         );
         return Redirect::route('forms')->with('success', 'Form created.');
+    }
+
+    public function edit(Form $form)
+    {
+        return Inertia::render('Forms/Edit', [
+            'questions' => [
+                'id' => $form->id,
+                'name' => $form->name,
+                'theme' => $form->theme,
+                'pages' => $form->pages,
+                'visibility' => $form->visibility,
+                'multi_tab' => $form->multi_tab,
+                'form_builder_json' => $form->form_builder_json,
+            ],
+            'visibility_options' => Form::$visibility_options,
+        ]);
+    }
+
+    public function update(Form $form)
+    {
+        $form->update(
+            Request::validate([
+                'name' => ['required', 'max:100'],
+                'theme' => ['nullable'],
+                'pages' => ['nullable', 'max:50'],
+                'visibility' => ['nullable', 'max:150'],
+                'multi_tab' => ['boolean'],
+                'form_builder_json' => ['required'],
+            ])
+        );
+
+        return Redirect::route('forms')->with('success', 'Form updated.');
     }
 }
