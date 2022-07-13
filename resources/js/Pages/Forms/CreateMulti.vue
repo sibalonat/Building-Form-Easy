@@ -108,9 +108,9 @@ export default {
       this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
       console.log(this.form.multi_tab)
 
-      this.form.multi_tab ? false : this.form.multi_tab
+      this.form.multi_tab = true
 
-      this.form.post('/questions')
+      this.form.post('/questions-multi')
     },
   },
 }

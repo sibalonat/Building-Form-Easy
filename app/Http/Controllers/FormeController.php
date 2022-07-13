@@ -29,7 +29,29 @@ class FormeController extends Controller
         ]);
     }
 
+    public function createMulti()
+    {
+        return Inertia::render('Forms/CreateMulti', [
+            'visibility_options' => Form::$visibility_options,
+        ]);
+    }
+
     public function store()
+    {
+        Form::create(
+            Request::validate([
+                'name' => ['required', 'max:100'],
+                'theme' => ['nullable'],
+                'pages' => ['nullable', 'max:50'],
+                'visibility' => ['nullable', 'max:150'],
+                'multi_tab' => ['boolean'],
+                'form_builder_json' => ['required'],
+            ])
+        );
+        return Redirect::route('forms')->with('success', 'Form created.');
+    }
+
+    public function storeMulti()
     {
         Form::create(
             Request::validate([

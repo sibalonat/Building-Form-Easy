@@ -122,6 +122,14 @@ Route::get('questions/create', [FormeController::class, 'create'])
     ->name('forms.create')
     ->middleware('auth');
 
+Route::get('questions/create-multi', [FormeController::class, 'createMulti'])
+    ->name('forms.create_multi')
+    ->middleware('auth');
+
+Route::post('questions-multi', [FormeController::class, 'storeMulti'])
+    ->name('forms.store_multi')
+    ->middleware('auth');
+
 Route::post('questions', [FormeController::class, 'store'])
     ->name('forms.store')
     ->middleware('auth');
@@ -138,9 +146,6 @@ Route::delete('questions/{form}', [FormeController::class, 'destroy'])
     ->name('forms.destroy')
     ->middleware('auth');
 
-Route::put('questions/{form}/restore', [FormeController::class, 'restore'])
-    ->name('questions.restore')
-    ->middleware('auth');
 
 // Contacts
 

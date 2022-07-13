@@ -2,10 +2,14 @@
   <div>
     <Head title="Forms" />
     <h1 class="mb-8 text-3xl font-bold">Forms</h1>
-    <div class="flex items-center justify-between mb-6">
-      <Link class="btn-indigo" href="/questions/create">
+    <div class="flex items-center justify-start mb-6">
+      <Link class="mr-5 btn-indigo" href="/questions/create">
         <span>Create</span>
-        <span class="hidden md:inline">&nbsp;Forms</span>
+        <span class="hidden text-xs italic md:inline">&nbsp;simple</span>
+      </Link>
+      <Link class="ml-5 btn-indigo" href="/questions/create-multi">
+        <span>Create</span>
+        <span class="hidden text-xs italic md:inline">&nbsp;Multi-Tab</span>
       </Link>
     </div>
     <div class="overflow-x-auto bg-white rounded-md shadow">
