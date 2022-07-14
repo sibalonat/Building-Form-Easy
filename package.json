@@ -43,6 +43,7 @@
         "vue": "^3.2.27",
         "vue-loader": "^16.2.0",
         "vue3-select2-component": "^0.1.7",
+        "vue3-tabs": "^0.1.13-beta.3",
         "webpack-node-externals": "^3.0.0"
     }
 }

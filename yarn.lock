@@ -5878,6 +5878,11 @@
     "jquery" "^3.3.1"
     "select2" "^4.0.7-rc.0"
 
+"vue3-tabs@^0.1.13-beta.3":
+  "integrity" "sha512-tWIQ9lG8sTkk7o91nsdQv1/0hgQaKv/AMDFlV3tAreYYAGI1stkH5KtEiEWqtZsi6dVIVOGiGsi7+Um6dWUQ3Q=="
+  "resolved" "https://registry.npmjs.org/vue3-tabs/-/vue3-tabs-0.1.13-beta.3.tgz"
+  "version" "0.1.13-beta.3"
+
 "watchpack@^2.3.1":
   "integrity" "sha512-x0t0JuydIo8qCNctdDrn1OzH/qDzk2+rdCOC3YzumZ42fiMqmQ7T3xQurykYMhYfHaPHTp4ZxAx2NfUo1K6QaA=="
   "resolved" "https://registry.npmjs.org/watchpack/-/watchpack-2.3.1.tgz"

@@ -3,6 +3,8 @@ import { InertiaProgress } from '@inertiajs/progress'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 // eslint-disable-next-line no-unused-vars
 import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
+import Tabs from 'vue3-tabs'
+
 
 // eslint-disable-next-line no-undef
 window.$ = window.jQuery = require('jquery')
@@ -21,6 +23,7 @@ createInertiaApp({
       .use(plugin)
       .use(provide, inject)
       .use(LaravelPermissionToVueJS)
+      .use(Tabs)
       .mount(el)
   },
 })

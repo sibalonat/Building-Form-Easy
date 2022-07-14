@@ -33,7 +33,7 @@
             <label for="multi" class="w-10/12 pl-3"> Multi-tab </label>
           </div>
 
-          <VFormBuilder ref="gott" class="w-full" />
+          <VFormBuilderMulti ref="gott" class="w-full" />
         </div>
         <div class="flex items-center justify-end px-8 py-4 border-t border-gray-100 bg-gray-50">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">
@@ -52,7 +52,7 @@ import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Select2 from 'vue3-select2-component'
-import VFormBuilder from '@/Shared/formBuild'
+import VFormBuilderMulti from '@/Shared/formBuildMulti'
 
 
 export default {
@@ -63,7 +63,7 @@ export default {
     SelectInput,
     TextInput,
     Select2,
-    VFormBuilder,
+    VFormBuilderMulti,
   },
   layout: Layout,
   props: {
@@ -105,12 +105,12 @@ export default {
     },
     store() {
 
-      this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
-      console.log(this.form.multi_tab)
+      // this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
+      // console.log(this.form.multi_tab)
 
-      this.form.multi_tab = true
+      // this.form.multi_tab = true
 
-      this.form.post('/questions-multi')
+      // this.form.post('/questions-multi')
     },
   },
 }
