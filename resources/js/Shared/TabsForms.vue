@@ -28,7 +28,7 @@
       <div class="flex">
         <div class="w-10/12 grow">
           {{ tab }}
-          <div :id="`form-editortp${i}`" ref="" />
+          <div :id="`form-editortp${i}`" />
           <!-- form-editor''+i+'' -->
         </div>
         <div class="flex-none">
@@ -56,17 +56,19 @@ export default {
       console.log(state)
     }
 
+    var fbOptions = {
+      disabledActionButtons: ['data', 'save', 'clear'],
+      disabledAttrs: ['access', 'style', 'className'],
+      disableFields: ['autocomplete', 'hidden', 'paragraph', 'button'],
+      i18n: {
+        locale: 'en-US',
+      },
+    }
+
     const tabi = ref(5)
 
     onMounted(() => {
-      var fbOptions = {
-        disabledActionButtons: ['data', 'save', 'clear'],
-        disabledAttrs: ['access', 'style', 'className'],
-        disableFields: ['autocomplete', 'hidden', 'paragraph', 'button'],
-        i18n: {
-          locale: 'en-US',
-        },
-      }
+
       const reference = ref('')
       reference.value = tabs.value.indexOf(state.selectedTab)
       // console.log(reference.value)
@@ -74,17 +76,8 @@ export default {
       // eslint-disable-next-line no-undef
       $(i).formBuilder(fbOptions)
 
-      console.log(state)
     })
     onUpdated(() => {
-      var fbOptions = {
-        disabledActionButtons: ['data', 'save', 'clear'],
-        disabledAttrs: ['access', 'style', 'className'],
-        disableFields: ['autocomplete', 'hidden', 'paragraph', 'button'],
-        i18n: {
-          locale: 'en-US',
-        },
-      }
       const reference = ref('')
       reference.value = tabs.value.indexOf(state.selectedTab)
       // console.log(reference.value)
