@@ -22,13 +22,12 @@
     <tab-panel
       v-for="(tab, i) in tabs"
       :key="`tp${i}`"
-      :ref="tab"
       :val="tab"
     >
       <div class="flex">
         <div class="w-10/12 grow">
           {{ tab }}
-          <div :id="`form-editortp${i}`" ref="" />
+          <div :id="`form-editortp${i}`" />
           <!-- form-editor''+i+'' -->
         </div>
         <div class="flex-none">
@@ -67,13 +66,17 @@ export default {
           locale: 'en-US',
         },
       }
-      const reference = ref('')
-      reference.value = tabs.value.indexOf(state.selectedTab)
-      // console.log(reference.value)
-      const i = `#form-editortp${reference.value}`
-      // eslint-disable-next-line no-undef
-      $(i).formBuilder(fbOptions)
+      tabs.value.map((el, index) => {
+        // eslint-disable-next-line no-undef
+        // console.log(state.selectedTab)
+        // eslint-disable-next-line no-undef
+        // tp${i}
+        var i = `#form-editortp${index}`
+        // eslint-disable-next-line no-undef
+        $(i).formBuilder(fbOptions)
+      })
 
+      // console.log(fBuilder)
       console.log(state)
     })
     onUpdated(() => {
