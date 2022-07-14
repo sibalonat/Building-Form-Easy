@@ -77,27 +77,27 @@ export default {
       console.log(state)
     })
     onUpdated(() => {
-      console.log(state)
-      // var fbOptions = {
-      //     disabledActionButtons: ['data', 'save', 'clear'],
-      //     disabledAttrs: ['access', 'style', 'className'],
-      //     disableFields: ['autocomplete', 'hidden', 'paragraph', 'button'],
-      //     i18n: {
-      //       locale: 'en-US',
-      //     },
-      //   },
-      //   // eslint-disable-next-line no-undef
-      //   fBuilder = $('#form-editor').formBuilder(fbOptions)
-      // console.log(fBuilder)
+      var fbOptions = {
+        disabledActionButtons: ['data', 'save', 'clear'],
+        disabledAttrs: ['access', 'style', 'className'],
+        disableFields: ['autocomplete', 'hidden', 'paragraph', 'button'],
+        i18n: {
+          locale: 'en-US',
+        },
+      }
+      const reference = ref('')
+      reference.value = tabs.value.indexOf(state.selectedTab)
+      // console.log(reference.value)
+      const i = `#form-editortp${reference.value}`
+      // eslint-disable-next-line no-undef
+      $(i).formBuilder(fbOptions)
     })
 
     // watch(tabs, () => {
     watch(tabs.value, () => {
       // tabs.value
-
       // eslint-disable-next-line no-undef
       console.log(state.selectedTab)
-
       console.log(tabs.value.length)
       // console.log(tabs.value)
     })
