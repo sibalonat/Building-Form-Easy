@@ -22,14 +22,12 @@
     <tab-panel
       v-for="(tab, i) in tabs"
       :key="`tp${i}`"
-      :ref="tab"
       :val="tab"
     >
       <div class="flex">
         <div class="w-10/12 grow">
-          {{ tab }}
+          <!-- {{ tab }} -->
           <div :id="`form-editortp${i}`" />
-          <!-- form-editor''+i+'' -->
         </div>
         <div class="flex-none">
           <button @click="tabRemover(i)"> - </button>
@@ -45,16 +43,6 @@ import { onMounted, onUpdated, reactive, ref, toRefs, watch } from 'vue'
 // import VFormBuilder from '@/Shared/formBuild'
 export default {
   setup() {
-    const tabs = ref(['Tab 1', 'Tab 2', 'Tab 3'])
-
-    const state = reactive({
-      selectedTab: tabs.value[1],
-    })
-
-    const handleClick = () => {
-      console.log('you clicked')
-      console.log(state)
-    }
 
     var fbOptions = {
       disabledActionButtons: ['data', 'save', 'clear'],
@@ -63,20 +51,33 @@ export default {
       i18n: {
         locale: 'en-US',
       },
+      formData: '',
+    }
+    const tabs = ref(['Tab 1'])
+    const tabarray = ref([])
+
+    const state = reactive({
+      selectedTab: tabs.value[0],
+    })
+
+    const handleClick = (val) => {
+      console.log(val)
+      const referenca = tabs.value.indexOf(val)
+      // console.log(referenca)
+      fbOptions.formData = tabarray.value[referenca]
     }
 
-    const tabi = ref(5)
+    const tabi = ref(1)
 
     onMounted(() => {
-
       const reference = ref('')
       reference.value = tabs.value.indexOf(state.selectedTab)
       // console.log(reference.value)
       const i = `#form-editortp${reference.value}`
       // eslint-disable-next-line no-undef
       $(i).formBuilder(fbOptions)
-
     })
+
     onUpdated(() => {
       const reference = ref('')
       reference.value = tabs.value.indexOf(state.selectedTab)
@@ -86,19 +87,36 @@ export default {
       $(i).formBuilder(fbOptions)
     })
 
-    // watch(tabs, () => {
-    watch(tabs.value, () => {
-      // tabs.value
+
+    watch(() => state.selectedTab, (newVal, oldVal) => {
+
+      const oldReference = ref('')
+      const newReference = ref('')
+      oldReference.value = tabs.value.indexOf(oldVal)
+      newReference.value = tabs.value.indexOf(newVal)
+
+      // console.log(oldReference.value)
+
       // eslint-disable-next-line no-undef
-      console.log(state.selectedTab)
-      console.log(tabs.value.length)
-      // console.log(tabs.value)
+      const oldFormData = $(oldReference.value).formBuilder('getData', 'json')
+      // console.log(oldFormData)
+
+      if (!tabarray.value[oldReference.value]) {
+        console.log('loads data')
+        tabarray.value.push(oldFormData)
+      } else if (!tabarray.value[newReference.value]) {
+        console.log('loads data2')
+        tabarray.value.push(oldFormData)
+      }
+
     })
 
     const tabHandler = () => {
       tabi.value++
       if (tabs.value.length < 12) {
         tabs.value.push(`Tab ${tabi.value}`)
+        state.selectedTab = `Tab ${tabi.value}`
+        fbOptions.formData = ''
       } else if(tabs.value.length === 12)
         return
     }
@@ -126,4 +144,3 @@ export default {
 </style>
 
 
- <!-- // console.log(event.target.__vueParentComponent.attrs.val) -->
