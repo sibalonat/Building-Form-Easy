@@ -23,7 +23,6 @@
             </option>
           </select-input>
 
-
           <div class="inline-flex items-center w-1/6 my-auto">
             <input
               id="multi" v-model="form.multi_tab" type="checkbox"
@@ -33,7 +32,11 @@
             <label for="multi" class="w-10/12 pl-3"> Multi-tab </label>
           </div>
 
-          <VFormBuilder ref="gott" class="w-full" />
+          <div v-if="form.multi_tab === true" class="w-full">
+            <tabs-form v-show="submited === true" ref="gott" />
+          </div>
+
+          <VFormBuilder v-if="form.multi_tab === false" ref="gott" class="w-full" />
         </div>
         <div class="flex items-center justify-end px-8 py-4 border-t border-gray-100 bg-gray-50">
           <loading-button :loading="form.processing" class="btn-indigo" type="submit">
@@ -53,7 +56,7 @@ import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Select2 from 'vue3-select2-component'
 import VFormBuilder from '@/Shared/formBuild'
-
+import TabsForm from '@/Shared/TabsForms'
 
 export default {
   components: {
@@ -64,6 +67,7 @@ export default {
     TextInput,
     Select2,
     VFormBuilder,
+    TabsForm,
   },
   layout: Layout,
   props: {
@@ -74,6 +78,7 @@ export default {
   data() {
     return {
       formData: null,
+      submited: false,
 
       myOptions: [
         {
@@ -104,9 +109,18 @@ export default {
       console.log({ id, text })
     },
     store() {
+      this.submited = true
 
-      this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
-      console.log(this.form.multi_tab)
+      // console.log(this.form.multi_tab)
+      if (this.form.multi_tab === false) {
+        this.form.form_builder_json = this.$refs.gott.$data.fBuilder.formData
+      } else {
+        // this.form.form_builder_json = JSON.stringify(this.$refs.gott.tabarray)
+        // this.form.form_builder_json = this.$refs.gott.tabarray
+        this.$refs.gott.tabHandler()
+        this.form.form_builder_json = JSON.stringify(this.$refs.gott.tabarray)
+        console.log(this.form.form_builder_json)
+      }
 
       this.form.multi_tab ? false : this.form.multi_tab
 
